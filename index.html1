@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confession Letter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(#3b2f2f, #1c1c1c);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .paper {
+        width: 500px;
+        max-width: 90%;
+        padding: 40px;
+        background: #f4e4bc;
+        background-image: 
+            radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+            linear-gradient(#f7e8c9, #e9d3a3);
+        background-size: 3px 3px;
+        border-radius: 8px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        font-family: 'Playfair Display', serif;
+        color: #3a2a1a;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: openPaper 2s ease forwards;
+    }
+
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 25px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 2;       /* Extra spacing between lines */
+        letter-spacing: 0.5px; /* Slight letter spacing */
+        white-space: pre-wrap; /* Preserve line breaks and spacing */
+        min-height: 450px;    /* Enough space for typewriter effect */
+    }
+
+    .btn {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    button {
+        background: #6b4f2c;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #8a6a3d;
+    }
+
+    @keyframes openPaper {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="paper">
+    <h1>Confession</h1>
+
+    <p id="text">
+Hi,
+
+This is the first time I’ve ever had the courage to confess like this, so I really hope you take a moment to read my letter.
+    </p>
+
+    <div class="btn">
+        <button id="continueBtn" onclick="startTyping()">Continue</button>
+    </div>
+</div>
+
+<script>
+const message = `Honestly, I don’t think words will ever be enough to fully express what I feel, but I want you to know this—I’ve liked you for almost four months, and I think that’s reason enough for me to finally be honest.
+
+We became classmates during the first semester, and at first, I didn’t really notice you. I was honestly just focused on my own world back then. But when we got grouped together, that’s when I really started to see you for who you are.
+
+I noticed your smile first, then your eyes, your height, your humor—everything about you, really. I’ll admit, I started paying more attention to you than I meant to. I tried to tell myself it was just attraction, nothing serious.
+
+But as time passed, I realized it wasn’t just that. The more we talked and the more comfortable we became with each other, the more my feelings grew. I didn’t plan for it to happen—it just did.
+
+I thought that when we stopped being classmates, things would fade and I’d move on. But somehow, you stayed in my thoughts. I still find myself thinking about you more often than I should, and I guess this is me finally being honest about it. I’m a little nervous saying all of this, but I wanted you to know how I feel—because you matter to me, and these feelings are real.
+
+I want to be clear about something—I’m not telling you all of this to pressure you or make you feel obligated to feel the same way. That’s never been my intention. I believe that emotions are deeply personal and not something we can force or control. It’s completely okay if you don’t share the same feelings I have. My only reason for writing this is to be honest, because I value you and the connection we have.
+
+I have never regretted liking you—not even once. You are a good friend, a great classmate, respectful to the people around you, someone with dreams and purpose, and most of all, a man of God. You embody the qualities I’ve always admired and hoped for in a man. Maybe that’s why my feelings stayed—because you were never just someone I liked; you were someone I truly respected.
+
+Regardless of how you may feel after reading this, I want you to know how thankful I am for the moments we shared, even the ones that seemed ordinary at the time. For the conversations, the laughter, and even the silence—you brought joy into my life in ways you probably never realized. And I will always be grateful for that.
+
+Reaching this point, where I finally chose to confess, I’m not asking for anything in return. I don’t expect you to immediately reciprocate my feelings or to force yourself to feel something you don’t. I just wanted to be true—to myself and to you. Whether these feelings remain quietly here or end with this letter, I will accept everything with an open heart.
+
+Thank you for simply being you. Thank you for the small moments and memories that you may not have intentionally left behind, but that stayed with me and became a part of who I am. If the day ever comes when things change, all I wish for is that there will always be respect, understanding, and comfort between us.
+
+And if you never figure out that this letter came from me, that’s okay too. It’s enough for me to know that, at least once in my life, I loved someone fully, sincerely, and without any regrets.
+`;
+
+let index = 0;
+let speed = 25; // adjust speed for smoother typing
+
+function startTyping() {
+    const textElement = document.getElementById("text");
+    textElement.innerText = ""; // clear initial text
+    document.getElementById("continueBtn").style.display = "none"; // hide button
+    index = 0;
+    typeWriter(textElement);
+}
+
+function typeWriter(element) {
+    if (index < message.length) {
+        const char = message.charAt(index);
+        element.innerText += char;
+        index++;
+
+        // Add a slightly longer pause for line breaks
+        if (char === "\n") {
+            setTimeout(() => typeWriter(element), speed * 8);
+        } else {
+            setTimeout(() => typeWriter(element), speed);
+        }
+    }
+}
+</script>
+
+</body>
+</html>
